@@ -1,0 +1,48 @@
+services:
+  jenkins:
+    build:
+      context: jenkins/
+      target: production
+    group_add:
+      - docker
+    ports:
+      - 8081:${JENKINS_PORT_WEB}
+      - 50001:${JENKINS_PORT_AGENT}
+    environment:
+      - JENKINS_ADMIN_PASSWORD=${JENKINS_ADMIN_PASSWORD}
+      - DOCKER_HUB_USERNAME=${DOCKER_HUB_USERNAME}
+      - DOCKER_HUB_PASSWORD=${DOCKER_HUB_PASSWORD}
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  agent:
+    build:
+      context: app/
+      target: agent
+    environment:
+      - JENKINS_URL=http://jenkins:${JENKINS_PORT_WEB}
+      - JENKINS_AGENT_NAME=docker-agent
+      - JENKINS_ADMIN_PASSWORD=${JENKINS_ADMIN_PASSWORD}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - agent_workspace:/home/jenkins/agent
+    depends_on:
+      - jenkins
+
+  app-test:
+    build:
+       context: app/
+       target: test
+    profiles: ["test"]
+
+  app:
+    build:
+      context: app/
+      target: production
+    ports:
+      - ${flask_app_port}:5000
+
+volumes:
+  jenkins_home:
+  agent_workspace:
