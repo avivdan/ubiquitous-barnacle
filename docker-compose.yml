@@ -3,8 +3,7 @@ services:
     build:
       context: jenkins/
       target: production
-    group_add:
-      - docker
+
     ports:
       - 8081:${JENKINS_PORT_WEB}
       - 50001:${JENKINS_PORT_AGENT}
