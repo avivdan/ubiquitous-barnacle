@@ -15,7 +15,7 @@ data "aws_ami" "ubuntu" {
 
 resource "aws_key_pair" "deployer" {
   key_name   = "deployer-key"
-  public_key = file("${var.path}/i58250.pem.pub")
+  public_key = var.ssh_public_key
 }
 
 
