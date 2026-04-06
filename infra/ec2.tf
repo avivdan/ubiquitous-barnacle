@@ -20,11 +20,12 @@ resource "aws_key_pair" "deployer" {
 
 
 resource "aws_instance" "jenkins_instance" {
-  ami                    = data.aws_ami.ubuntu.id
-  instance_type          = "t3.micro"
-  key_name               = aws_key_pair.deployer.key_name
-  vpc_security_group_ids = [aws_security_group.private_sg.id]
-  subnet_id              = aws_subnet.private_subnet.id
+  ami                         = data.aws_ami.ubuntu.id
+  instance_type               = "t3.micro"
+  associate_public_ip_address = true
+  key_name                    = aws_key_pair.deployer.key_name
+  vpc_security_group_ids      = [aws_security_group.private_sg.id]
+  subnet_id                   = aws_subnet.private_subnet.id
 
   user_data = templatefile("../scripts/jenkins.sh", {
     jenkins_admin_password = var.jenkins_admin_password
