@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y docker-ce-cli
 
 USER jenkins
 RUN jenkins-plugin-cli --plugins \
-    "configuration-as-code \
+    configuration-as-code \
     git \
     workflow-aggregator \
     credentials \
@@ -24,7 +24,7 @@ RUN jenkins-plugin-cli --plugins \
     job-dsl \
     docker-workflow \
     blueocean \
-    pipeline-stage-view"
+    pipeline-stage-view
 
 ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false"
 ENV CASC_JENKINS_CONFIG=/usr/share/jenkins/ref/jenkins.yaml
