@@ -5,8 +5,8 @@ services:
       target: production
 
     ports:
-      - 8081:${JENKINS_PORT_WEB}
-      - 50001:${JENKINS_PORT_AGENT}
+      - 8080:${JENKINS_PORT_WEB}
+      - 50000:${JENKINS_PORT_AGENT}
     environment:
       - JENKINS_ADMIN_PASSWORD=${JENKINS_ADMIN_PASSWORD}
       - DOCKER_HUB_USERNAME=${DOCKER_HUB_USERNAME}
