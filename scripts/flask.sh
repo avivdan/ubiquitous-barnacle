@@ -33,6 +33,6 @@ JENKINS_URL=http://${master_private_ip}:8080
 JENKINS_AGENT_NAME=docker-agent
 EOF
 
-# Start agent and app
+# Start app and agent
 cd /home/ubuntu/project
 docker compose up -d agent app

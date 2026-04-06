@@ -26,8 +26,6 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - agent_workspace:/home/jenkins/agent
-    depends_on:
-      - jenkins
 
   app-test:
     build:
