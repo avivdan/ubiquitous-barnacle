@@ -24,7 +24,8 @@ RUN jenkins-plugin-cli --plugins \
     job-dsl \
     docker-workflow \
     blueocean \
-    pipeline-stage-view
+    pipeline-stage-view \
+    github
 
 ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false"
 ENV CASC_JENKINS_CONFIG=/usr/share/jenkins/ref/jenkins.yaml

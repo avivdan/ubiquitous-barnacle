@@ -28,3 +28,29 @@ credentials:
               description: "Docker Hub credentials"
               username: "${DOCKER_HUB_USERNAME}"
               password: "${DOCKER_HUB_PASSWORD}"
+
+security:
+  globalJobDslSecurityConfiguration:
+    useScriptSecurity: false
+    
+jobs:
+  - script: >
+      pipelineJob('flask-pipeline') {
+        triggers {
+          githubPush()
+        }
+        definition {
+          cpsScm {
+            scm {
+              git {
+                remote {
+                  url('https://github.com/avivdan/ubiquitous-barnacle.git')
+                  credentials('')
+                }
+                branch('*/main')
+              }
+            }
+            scriptPath('Jenkinsfile')
+          }
+        }
+      }
