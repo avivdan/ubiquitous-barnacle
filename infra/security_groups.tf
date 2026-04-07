@@ -63,6 +63,13 @@ resource "aws_security_group" "public_sg" {
     cidr_blocks = [aws_vpc.main.cidr_block, "${var.testing_ip}"]
   }
 
+  ingress {
+    from_port   = 5000
+    to_port     = 5000
+    protocol    = "tcp"
+    cidr_blocks = [aws_vpc.main.cidr_block, "${var.testing_ip}"]
+  }
+
   # send jenkins instance traffic from flask instance
   egress {
     from_port   = 50000
