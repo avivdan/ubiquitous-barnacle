@@ -1,6 +1,6 @@
 variable "testing_ip" {
   type    = string
-  default = env.IPV4_MY_MACHINE
+  default = "5.29.15.18/32"
 }
 
 variable "project_name" {
@@ -25,7 +25,7 @@ variable "owner" {
 
 variable "path" {
   type    = string
-  default = env.PATH_TO_KEY
+  default = "C:/Users/gideo/Desktop/aws"
 }
 
 variable "ssh_public_key" {
