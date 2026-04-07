@@ -32,7 +32,10 @@ credentials:
 security:
   globalJobDslSecurityConfiguration:
     useScriptSecurity: false
-    
+  csrf:
+    defaultCrumbIssuer:
+      excludeClientIPFromCrumb: true
+
 jobs:
   - script: >
       pipelineJob('flask-pipeline') {
