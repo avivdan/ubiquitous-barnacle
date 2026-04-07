@@ -62,3 +62,18 @@ resource "aws_instance" "app_instance" {
     project = "${var.project_name}"
   }
 }
+
+
+resource "github_repository_webhook" "jenkins" {
+  repository = "ubiquitous-barnacle"
+
+  configuration {
+    url          = "http://${aws_instance.jenkins.public_ip}:8080/github-webhook/"
+    content_type = "json"
+    insecure_ssl = true
+  }
+
+  events = ["push"]
+
+  depends_on = [aws_instance.jenkins]
+}

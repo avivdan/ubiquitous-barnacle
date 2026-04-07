@@ -47,3 +47,8 @@ variable "docker_hub_password" {
   type      = string
   sensitive = true
 }
+
+variable "github_token" {
+  type      = string
+  sensitive = true
+}
