@@ -75,5 +75,5 @@ resource "github_repository_webhook" "jenkins" {
 
   events = ["push"]
 
-  depends_on = [aws_instance.jenkins]
+  depends_on = [aws_instance.jenkins_instance]
 }
