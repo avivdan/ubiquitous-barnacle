@@ -20,7 +20,7 @@ services:
       context: app/
       target: agent
     environment:
-      - JENKINS_URL=http://jenkins:${JENKINS_PORT_WEB}
+      - JENKINS_URL=${JENKINS_URL}
       - JENKINS_AGENT_NAME=docker-agent
       - JENKINS_ADMIN_PASSWORD=${JENKINS_ADMIN_PASSWORD}
     volumes:
