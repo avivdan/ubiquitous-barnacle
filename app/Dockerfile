@@ -25,7 +25,7 @@ FROM jenkins/inbound-agent:latest-jdk21 AS agent
 USER root
 
 RUN apt-get update && apt-get install -y \
-    ca-certificates curl lsb-release && \
+    ca-certificates curl lsb-release python3 python3-pip && \
     curl -fsSLo /usr/share/keyrings/docker-archive-keyring.asc \
         https://download.docker.com/linux/debian/gpg && \
     echo "deb [arch=$(dpkg --print-architecture) \
@@ -34,6 +34,9 @@ RUN apt-get update && apt-get install -y \
         $(lsb_release -cs) stable" > /etc/apt/sources.list.d/docker.list && \
     apt-get update && apt-get install -y docker-ce-cli docker-compose-plugin && \
     rm -rf /var/lib/apt/lists/*
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt --break-system-packages
 
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
