@@ -27,6 +27,7 @@ JENKINS_ADMIN_PASSWORD=${jenkins_admin_password}
 JENKINS_PORT_WEB=8080
 JENKINS_PORT_AGENT=50000
 flask_app_port=5000
+JENKINS_URL=http://jenkins:8080
 DOCKER_HUB_USERNAME=${docker_hub_username}
 DOCKER_HUB_PASSWORD=${docker_hub_password}
 EOF

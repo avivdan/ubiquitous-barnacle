@@ -17,7 +17,7 @@ resource "aws_security_group" "private_sg" {
     from_port   = 8080
     to_port     = 8080
     protocol    = "tcp"
-    cidr_blocks = [aws_vpc.main.cidr_block, "${var.testing_ip}"]
+    cidr_blocks = ["0.0.0.0/0"]
   }
   # Allow Jenkins agent communication with flask instance
   ingress {
