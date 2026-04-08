@@ -1,4 +1,7 @@
 jenkins:
+  crumbIssuer:
+    standard:
+      excludeClientIPFromCrumb: true
   securityRealm:
     local:
       allowsSignup: false
@@ -32,10 +35,7 @@ credentials:
 security:
   globalJobDslSecurityConfiguration:
     useScriptSecurity: false
-  crumbIssuer:
-    standard:
-      excludeClientIPFromCrumb: true
-
+    
 jobs:
   - script: >
       pipelineJob('flask-pipeline') {
