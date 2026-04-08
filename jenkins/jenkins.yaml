@@ -10,7 +10,7 @@ jenkins:
           password: "${JENKINS_ADMIN_PASSWORD}"
   authorizationStrategy:
     loggedInUsersCanDoAnything:
-      allowAnonymousRead: false
+      allowAnonymousRead: true
   nodes:
     - permanent:
         name: "docker-agent"
