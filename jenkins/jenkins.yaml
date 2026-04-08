@@ -32,8 +32,8 @@ credentials:
 security:
   globalJobDslSecurityConfiguration:
     useScriptSecurity: false
-  csrf:
-    defaultCrumbIssuer:
+  crumbIssuer:
+    standard:
       excludeClientIPFromCrumb: true
 
 jobs:
