@@ -1,6 +1,6 @@
 variable "testing_ip" {
   type    = string
-  default = "5.29.15.18/32"
+  default = "84.109.142.74/32"
 }
 
 variable "project_name" {
