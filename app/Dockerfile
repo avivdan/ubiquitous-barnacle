@@ -41,5 +41,4 @@ RUN pip install --no-cache-dir -r requirements.txt --break-system-packages
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
-USER jenkins
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]

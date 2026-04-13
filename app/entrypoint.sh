@@ -1,6 +1,13 @@
 #!/bin/bash
 set -e
 
+# Fix Docker socket permissions at runtime
+if [ -S /var/run/docker.sock ]; then
+    DOCKER_GID=$(stat -c '%g' /var/run/docker.sock)
+    groupadd -f -g "${DOCKER_GID}" docker-host 2>/dev/null || true
+    usermod -aG docker-host jenkins 2>/dev/null || true
+fi
+
 echo "Waiting for Jenkins master..."
 until curl -sf "${JENKINS_URL}/login" > /dev/null; do sleep 15; done
 
