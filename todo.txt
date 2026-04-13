@@ -1,4 +1,0 @@
-*** DO NOT MIND THIS FILE ***
-
-- recreate the entrypoint
-- create userdata for both of the ec2's

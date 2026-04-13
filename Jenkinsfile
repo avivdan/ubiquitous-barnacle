@@ -12,7 +12,7 @@ pipeline {
         }
         stage('Lint check ') {
             steps {
-                sh 'flake8 app/app.py --exit-zero --format=pylint --output-file=flake8.log'
+                sh 'python3 -m flake8 app/app.py --exit-zero --format=pylint --output-file=flake8.log'
             }
         }
         stage('Run tests') {
