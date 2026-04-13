@@ -5,8 +5,8 @@ services:
       target: production
 
     ports:
-      - 8080:${JENKINS_PORT_WEB}
-      - 50000:${JENKINS_PORT_AGENT}
+      - 8080:${JENKINS_PORT_WEB:-8080}
+      - 50000:${JENKINS_PORT_AGENT:-50000}
     environment:
       - JENKINS_ADMIN_PASSWORD=${JENKINS_ADMIN_PASSWORD}
       - DOCKER_HUB_USERNAME=${DOCKER_HUB_USERNAME}
@@ -38,7 +38,7 @@ services:
       context: app/
       target: production
     ports:
-      - ${flask_app_port}:5000
+      - ${flask_app_port:-5000}:5000
 
 volumes:
   jenkins_home:
