@@ -1,9 +1,9 @@
 pipeline {
     agent {label 'linux'}
-    // environment {
-    //     AWS_ACCESS_KEY_ID     = credentials('jenkins-aws-secret-key-id')
-    //     AWS_SECRET_ACCESS_KEY = credentials('jenkins-aws-secret-access-key')
-    // }
+    environment {
+        AWS_ACCESS_KEY_ID     = credentials('jenkins-aws-secret-key-id')
+        AWS_SECRET_ACCESS_KEY = credentials('jenkins-aws-secret-access-key')
+    }
     stages {
         stage('git checkout') {
              steps {
@@ -38,7 +38,9 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
                     sh 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin'
-                    sh 'cd /home/ubuntu/project && docker compose pull app && docker compose up -d app'
+                    sh 'cd /home/ubuntu/project'
+                    sh 'docker compose pull app' 
+                    sh 'docker compose up -d app'
                 }
             }
         }
