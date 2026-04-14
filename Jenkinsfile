@@ -38,9 +38,7 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
                     sh 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin'
-                    sh 'cd /home/ubuntu/project'
-                    sh 'docker compose pull app' 
-                    sh 'docker compose up -d app'
+                    sh 'cd /home/ubuntu/project && docker compose pull app && docker compose up -d app'
                 }
             }
         }
