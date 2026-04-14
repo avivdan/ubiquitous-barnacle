@@ -34,6 +34,7 @@ services:
     profiles: ["test"]
 
   app:
+    image: app:latest
     build:
       context: app/
       target: production
