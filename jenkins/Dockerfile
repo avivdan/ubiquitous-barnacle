@@ -23,7 +23,6 @@ RUN jenkins-plugin-cli --plugins \
     ssh-agent \
     job-dsl \
     docker-workflow \
-    blueocean \
     pipeline-stage-view \
     github 
 
