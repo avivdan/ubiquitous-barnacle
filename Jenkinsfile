@@ -32,6 +32,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
+                sh 'docker stop $(docker ps -q --filter "publish=5000") || true'
                 sh 'docker compose up -d app'
             }
         }
